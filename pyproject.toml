@@ -18,8 +18,12 @@ plg-resource-manager = "plg_resource_manager.__main__:main"
 [project.urls]
 homepage = "https://github.com/py-love-gmod/plg-resource-manager"
 
-[tool.setuptools.packages.find]
-where = ["."]
+[tool.setuptools]
+packages = { find = { where = ["."] } }
+
+[[tool.setuptools.ext-modules]]
+name = "plg_resource_manager.dxt._compressor"
+sources = ["plg_resource_manager/dxt/_compressor.c"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
