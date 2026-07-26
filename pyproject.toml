@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pylovegmod-resource-manager"
+version = "0.0.1"
+description = "Resource pipeline for GMod addons: textures, sounds, models"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.13"
+authors = [{ name = "Cain" }]
+dependencies = ["colorama", "pylovegmod-shared"]
+
+[project.optional-dependencies]
+vtf = [
+    "Pillow",
+]
+
+all = [
+    "pylovegmod-resource-manager[vtf]",
+]
+
+[project.scripts]
+plg-resource-manager = "plg_resource_manager.__main__:main"
+
+[project.urls]
+homepage = "https://github.com/py-love-gmod/plg-resource-manager"
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v"
