@@ -27,6 +27,14 @@ jobs:
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.22
 
+      - name: Verify wheels integrity
+        shell: bash
+        run: |
+          for f in wheelhouse/*.whl; do
+            echo "Checking $f"
+            unzip -t "$f" || (echo "Corrupt wheel: $f" && exit 1)
+          done
+
       - name: Upload wheels
         uses: actions/upload-artifact@v7
         with:
@@ -38,11 +46,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download all wheels
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
-          path: wheelhouse
+          path: artifacts
           pattern: wheels-*
-          merge-multiple: true
+
+      - name: Collect wheels into single directory
+        run: |
+          mkdir wheelhouse
+          find artifacts -name "*.whl" -exec cp {} wheelhouse/ \;
 
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
