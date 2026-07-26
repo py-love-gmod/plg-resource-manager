@@ -10,16 +10,7 @@ readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.13"
 authors = [{ name = "Cain" }]
-dependencies = ["colorama", "pylovegmod-shared"]
-
-[project.optional-dependencies]
-vtf = [
-    "Pillow",
-]
-
-all = [
-    "pylovegmod-resource-manager[vtf]",
-]
+dependencies = ["colorama", "pylovegmod-shared", "Pillow"]
 
 [project.scripts]
 plg-resource-manager = "plg_resource_manager.__main__:main"
