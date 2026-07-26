@@ -25,6 +25,10 @@ packages = { find = { where = ["."] } }
 name = "plg_resource_manager.dxt._compressor"
 sources = ["plg_resource_manager/dxt/_compressor.c"]
 
+[[tool.setuptools.ext-modules]]
+name = "plg_resource_manager.vtf._vtf"
+sources = ["plg_resource_manager/vtf/_vtf.c"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = ["test_*.py"]
